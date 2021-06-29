@@ -39,3 +39,10 @@ steps:
     Contents: '**\Release\**\ConsoleApp1.exe'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  displayName: "Publish Unsigned Exe"
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\ConsoleApp1.exe'
+    ArtifactName: 'Unsigned Exe'
+    publishLocation: 'Container'
