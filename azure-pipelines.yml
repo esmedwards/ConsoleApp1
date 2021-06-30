@@ -47,6 +47,8 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)\ConsoleApp1.exe'
     ArtifactName: 'Unsigned Exe'
     publishLocation: 'Container'
-
-- script: signtool sign /sha1 $(CERT_THUMBPRINT) /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\ConsoleApp1.exe
+    
+- task: CmdLine@2
+  inputs:
+    script: signtool sign /sha1 $(CERT_THUMBPRINT) /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\ConsoleApp1.exe
   displayName: "Sign Exe"
