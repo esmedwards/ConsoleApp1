@@ -35,16 +35,16 @@ steps:
 - task: CmdLine@2
   displayName: 'Sign EXE'
   inputs:
-    script: signtool sign /sha1 ${{ certThumbprint }} /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\${{ fileLocation }}
+    script: signtool sign /sha1 ${{ parameters.certThumbprint }} /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}
 
 - task: PublishBuildArtifacts@1
   displayName: "Publish Signed Exe"
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)\${{ fileLocation }}'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}'
     ArtifactName: 'Signed Exe'
     publishLocation: 'Container'
 
 - task: CmdLine@2
   displayName: 'Verify Signed EXE'
   inputs:
-    script: signtool verify /v /pa $(Build.ArtifactStagingDirectory)\${{ fileLocation }}
+    script: signtool verify /v /pa $(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}
