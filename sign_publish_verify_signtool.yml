@@ -24,7 +24,7 @@ parameters:
     default: "azure-keypair-$(Build.BuildId)"
 
   - name: fileLocation
-    # type: string
+    type: string
     default: "ConsoleApp1.exe"
 
   - name: certThumbprint
@@ -35,16 +35,16 @@ steps:
 - task: CmdLine@2
   displayName: 'Sign EXE'
   inputs:
-    script: signtool sign /sha1 $(certThumbprint) /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\$(fileLocation)
+    script: signtool sign /sha1 ${{ certThumbprint }} /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\${{ fileLocation }}
 
 - task: PublishBuildArtifacts@1
   displayName: "Publish Signed Exe"
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)\$(FILE_LOCATION)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\${{ fileLocation }}'
     ArtifactName: 'Signed Exe'
     publishLocation: 'Container'
 
 - task: CmdLine@2
   displayName: 'Verify Signed EXE'
   inputs:
-    script: signtool verify /v /pa $(Build.ArtifactStagingDirectory)\$(FILE_LOCATION)
+    script: signtool verify /v /pa $(Build.ArtifactStagingDirectory)\${{ fileLocation }}
