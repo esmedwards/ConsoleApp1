@@ -49,6 +49,15 @@ steps:
     publishLocation: 'Container'
 
 - template: sign_publish_verify_signtool.yml
+  parameters:
+    smClientCertPassword: lv9Z9souHUrQ
+    smClientCertFile: "/home/esmerald/Downloads/ssm/Certificate_pkcs12.p12 "
+    smHost: https://clientauth.demo.one.digicert.com
+    smApiKey: 01c3f4989abb7445aa2b065b58_7dc6b2114c09225084ca74b16e12bda6aea3176f5398baea92cf25ffecfc1926
+    pkcs11Config: "/home/esmerald/Downloads/ssm/pkcs11properties.cfg"
+    keypairName: "azure-keypair-$(Build.BuildId)"
+    fileLocation: "ConsoleApp1.exe"
+    certThumbprint: "FCFDDD025F347235D462F9383D9E81EF3E600276"
 
 # - task: CmdLine@2
 #   inputs:
