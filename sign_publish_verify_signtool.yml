@@ -1,20 +1,35 @@
-variables:
+paramenters:
   - name: SM_CLIENT_CERT_PASSWORD
-    value: lv9Z9souHUrQ
+    type: string
+    default: lv9Z9souHUrQ
+
   - name: SM_CLIENT_CERT_FILE
-    value: "/home/esmerald/Downloads/ssm/Certificate_pkcs12.p12 "
+    type: string
+    default: "/home/esmerald/Downloads/ssm/Certificate_pkcs12.p12 "
+
   - name: SM_HOST
-    value: https://clientauth.demo.one.digicert.com
+    type: string
+    default: https://clientauth.demo.one.digicert.com
+
   - name: SM_API_KEY
-    value: 01c3f4989abb7445aa2b065b58_7dc6b2114c09225084ca74b16e12bda6aea3176f5398baea92cf25ffecfc1926
+    type: string
+    default: 01c3f4989abb7445aa2b065b58_7dc6b2114c09225084ca74b16e12bda6aea3176f5398baea92cf25ffecfc1926
+
   - name: PKCS11_CONFIG
-    value: "/home/esmerald/Downloads/ssm/pkcs11properties.cfg"
+    type: string
+    default: "/home/esmerald/Downloads/ssm/pkcs11properties.cfg"
+
   - name: KEYPAIR_NAME
-    value: "azure-keypair-$(Build.BuildId)"
+    type: string
+    default: "azure-keypair-$(Build.BuildId)"
+
   - name: FILE_LOCATION
-    value: "ConsoleApp1.exe"
+    type: string
+    default: "ConsoleApp1.exe"
+
   - name: CERT_THUMBPRINT
-    value: "FCFDDD025F347235D462F9383D9E81EF3E600276"
+    type: string
+    default: "FCFDDD025F347235D462F9383D9E81EF3E600276"
 
 steps:
 - task: CmdLine@2
