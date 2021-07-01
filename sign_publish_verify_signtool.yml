@@ -24,7 +24,7 @@ parameters:
     default: "azure-keypair-$(Build.BuildId)"
 
   - name: fileLocation
-    type: string
+    # type: string
     default: "ConsoleApp1.exe"
 
   - name: certThumbprint
