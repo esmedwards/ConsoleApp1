@@ -48,7 +48,7 @@ steps:
     ArtifactName: 'Unsigned Exe'
     publishLocation: 'Container'
 
-- template: sign_publish_verify_signtool.yaml
+- template: sign_publish_verify_signtool.yml
 
 # - task: CmdLine@2
 #   inputs:
