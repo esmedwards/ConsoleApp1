@@ -1,0 +1,35 @@
+variables:
+  - name: SM_CLIENT_CERT_PASSWORD
+    value: lv9Z9souHUrQ
+  - name: SM_CLIENT_CERT_FILE
+    value: "/home/esmerald/Downloads/ssm/Certificate_pkcs12.p12 "
+  - name: SM_HOST
+    value: https://clientauth.demo.one.digicert.com
+  - name: SM_API_KEY
+    value: 01c3f4989abb7445aa2b065b58_7dc6b2114c09225084ca74b16e12bda6aea3176f5398baea92cf25ffecfc1926
+  - name: PKCS11_CONFIG
+    value: "/home/esmerald/Downloads/ssm/pkcs11properties.cfg"
+  - name: KEYPAIR_NAME
+    value: "azure-keypair-$(Build.BuildId)"
+  - name: FILE_LOCATION
+    value: "ConsoleApp1.exe"
+  - name: CERT_THUMBPRINT
+    value: "FCFDDD025F347235D462F9383D9E81EF3E600276"
+
+steps:
+- task: CmdLine@2
+  displayName: 'Sign EXE'
+  inputs:
+    script: signtool sign /sha1 $(CERT_THUMBPRINT) /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\$FILE_LOCATION
+
+- task: PublishBuildArtifacts@1
+  displayName: "Publish Signed Exe"
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\$FILE_LOCATION'
+    ArtifactName: 'Signed Exe'
+    publishLocation: 'Container'
+
+- task: CmdLine@2
+  displayName: 'Verify Signed EXE'
+  inputs:
+    script: signtool verify /v /pa $(Build.ArtifactStagingDirectory)\$FILE_LOCATION
