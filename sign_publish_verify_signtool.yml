@@ -1,4 +1,4 @@
-paramenters:
+parameters:
   - name: SM_CLIENT_CERT_PASSWORD
     type: string
     default: lv9Z9souHUrQ
