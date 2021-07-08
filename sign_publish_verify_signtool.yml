@@ -31,26 +31,7 @@ parameters:
     type: string
     default: "FCFDDD025F347235D462F9383D9E81EF3E600276"
 
-  - name: covProjects
-    type: object
-    default:
-      - language: cs
-        cleanCmd: 'dotnet clean' # command to clean target project; only applies to compiled code
-        buildCmd: 'dotnet build' # command to build target project; only applies to compiled code
-        targets: '* **/*' # solution to target; can be multiple filenames (whitespace delimted), or glob syntax (this will be expanded) 
-        # arguments: '--configuration=Release'
-
 steps:
-
-- ${{ each project in parameters.covProjects }}:
-    # - task: Bash@3
-    - task: CmdLine@2
-      displayName: Item Print
-      inputs:
-        # targetType: 'inline'
-        script: |
-          echo test
-
 - task: CmdLine@2
   displayName: 'Sign EXE'
   inputs:
