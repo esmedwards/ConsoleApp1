@@ -48,7 +48,7 @@ steps:
       inputs:
         targetType: 'inline'
         script: |
-          echo --${{ project }}
+          echo --${{ project.name }}
 
 - task: CmdLine@2
   displayName: 'Sign EXE'
