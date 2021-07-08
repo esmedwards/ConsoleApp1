@@ -43,7 +43,8 @@ parameters:
 steps:
 
 - ${{ each project in parameters.covProjects }}:
-    - task: Bash@3
+    # - task: Bash@3
+    - task: CmdLine@2
       displayName: Item Print
       inputs:
         targetType: 'inline'
