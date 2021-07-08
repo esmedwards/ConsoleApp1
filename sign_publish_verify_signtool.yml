@@ -37,7 +37,7 @@ parameters:
       - language: cs
         cleanCmd: 'dotnet clean' # command to clean target project; only applies to compiled code
         buildCmd: 'dotnet build' # command to build target project; only applies to compiled code
-        targets: '**/*' # solution to target; can be multiple filenames (whitespace delimted), or glob syntax (this will be expanded) 
+        targets: '*' # solution to target; can be multiple filenames (whitespace delimted), or glob syntax (this will be expanded) 
         arguments: '--configuration=Release'
 
 steps:
@@ -49,7 +49,7 @@ steps:
       inputs:
         targetType: 'inline'
         script: |
-          echo --${{ project.name }}
+          echo test
 
 - task: CmdLine@2
   displayName: 'Sign EXE'
