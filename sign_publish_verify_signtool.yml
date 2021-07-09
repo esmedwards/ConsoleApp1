@@ -1,0 +1,50 @@
+parameters:
+  - name: smClientCertPassword
+    type: string
+    default: lv9Z9souHUrQ
+
+  - name: smClientCertFile
+    type: string
+    default: "/home/esmerald/Downloads/ssm/Certificate_pkcs12.p12 "
+
+  - name: smHost
+    type: string
+    default: https://clientauth.demo.one.digicert.com
+
+  - name: smApiKey
+    type: string
+    default: 01c3f4989abb7445aa2b065b58_7dc6b2114c09225084ca74b16e12bda6aea3176f5398baea92cf25ffecfc1926
+
+  - name: pkcs11Config
+    type: string
+    default: "/home/esmerald/Downloads/ssm/pkcs11properties.cfg"
+
+  - name: keypairName
+    type: string
+    default: "azure-keypair-$(Build.BuildId)"
+
+  - name: fileLocation
+    type: string
+    default: "ConsoleApp1.exe"
+
+  - name: certThumbprint
+    type: string
+    default: "FCFDDD025F347235D462F9383D9E81EF3E600276"
+
+steps:
+- task: CmdLine@2
+  displayName: 'Sign EXE'
+  inputs:
+    script: signtool sign /sha1 ${{ parameters.certThumbprint }} /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}
+
+- task: PublishBuildArtifacts@1
+  displayName: "Publish Signed Exe"
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}'
+    ArtifactName: 'Signed Exe'
+    publishLocation: 'Container'
+
+- task: CmdLine@2
+  displayName: 'Verify Signed EXE'
+  inputs:
+    script: signtool verify /v /pa $(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}
