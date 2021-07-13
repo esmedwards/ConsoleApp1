@@ -13,7 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  CERT_THUMBPRINT: 'FCFDDD025F347235D462F9383D9E81EF3E600276'
+  CERT_THUMBPRINT: '3b7b512bc32e8b50265d40659e1218902e8a1cc1'
 
 steps:
 - task: NuGetToolInstaller@1
