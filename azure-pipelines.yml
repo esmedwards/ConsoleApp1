@@ -67,6 +67,6 @@ steps:
   inputs:
     targetType: inline
     script: |
-      $password = '$env:'+"$(build.QueuedBy)".replace(" ","")
+      $password = "$(build.QueuedBy)".replace(" ","") + '-PASSWORD'
       echo $password
       
