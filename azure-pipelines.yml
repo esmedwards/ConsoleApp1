@@ -59,12 +59,9 @@ steps:
 #     fileLocation: "ConsoleApp1.exe"
 #     certThumbprint: $(CERT_THUMBPRINT)
 
-- task: CmdLine@2
+- task: DotNetCoreCLI@2
   displayName: 'Read user variables'
   env:
     API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
     API_KEY_TEST: $(ESMERALDALIAJ:TESTCALUE)
-  inputs:
-    script: |
-      echo $(API_KEY)
-      echo $(API_KEY_TEST)
+- bash: echo $(API_KEY) # echo $(API_KEY_TEST)
