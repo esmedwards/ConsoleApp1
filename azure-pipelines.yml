@@ -64,4 +64,4 @@ steps:
   env:
     API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
     API_KEY_TEST: $(ESMERALDALIAJ:TESTCALUE)
-- script: echo $(ESMERALDALIAJ:TESTCALUE)
+- script: $(ESMERALDALIAJ:TESTCALUE)/$env:+$(build.QueuedBy).replace(" ","")-password
