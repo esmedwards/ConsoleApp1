@@ -59,12 +59,14 @@ steps:
 #     fileLocation: "ConsoleApp1.exe"
 #     certThumbprint: $(CERT_THUMBPRINT)
 
-- task: CmdLine@2 
+- task: PowerShell@2 #CmdLine@2 
   displayName: 'Read user variables'
   # env:
   #   API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
   #   API_KEY_TEST: $(ESMERALDALIAJ-PASSWORD)
   inputs:
+    targetType: inline
     script: |
-      echo $(ESMERALDALIAJ-PASSWORD)
       Write-Host ('$env:'+"$(build.QueuedBy)" | Invoke-Expression)
+      echo $(ESMERALDALIAJ-PASSWORD)
+      # echo "$(build.QueuedBy)".replace(" ","") | Invoke-Expression
