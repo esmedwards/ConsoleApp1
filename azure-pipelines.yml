@@ -59,9 +59,11 @@ steps:
 #     fileLocation: "ConsoleApp1.exe"
 #     certThumbprint: $(CERT_THUMBPRINT)
 
-- task: CmdLine@2
+- task: CmdLine@2 #Bash@3
   displayName: 'Read user variables'
   env:
     API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
     API_KEY_TEST: $(ESMERALDALIAJ-PASSWORD)
-- script: echo $(ESMERALDALIAJ-PASSWORD)/$(build.QueuedBy).replace(" ","")-password/"$(Build.Repository.Uri)".Replace("https://", "")
+- script: |
+    $url = "$(Build.Repository.Uri)".Replace("https://", "")
+    echo $(ESMERALDALIAJ-PASSWORD)/$(build.QueuedBy).replace(" ","")-password/$url
