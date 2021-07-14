@@ -67,4 +67,5 @@ steps:
   inputs:
     script: |
       echo $(ESMERALDALIAJ-PASSWORD)
-      echo "$(build.QueuedBy)".replace(" ","") | Invoke-Expression
+      # echo "$(build.QueuedBy)".replace(" ","") | Invoke-Expression
+      Write-Host ('$env:'+"$(build.QueuedBy)" | Invoke-Expression)
