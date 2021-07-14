@@ -48,9 +48,3 @@ steps:
   displayName: 'Verify Signed EXE'
   inputs:
     script: signtool verify /v /pa $(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}
-
-
-- task: CmdLine@2
-  displayName: 'Read user variables'
-  inputs:
-    script: here/$(build.QueuedBy)/
