@@ -67,6 +67,6 @@ steps:
   inputs:
     targetType: inline
     script: |
-      $password = "$(build.QueuedBy)".replace(" ","") + '-PASSWORD' | Invoke-Expression
-      echo $("$password")
+      $password = "$(build.QueuedBy)".replace(" ","") + '-PASSWORD'
+      echo $("$password") | Invoke-Expression
       
