@@ -69,5 +69,5 @@ steps:
     script: |
       $password = '$env:'+"$(build.QueuedBy)".replace(" ","")| Invoke-Expression
       echo $password
-      echo "$("$(build.QueuedBy)".replace(" ","") + '-PASSWORD')" | Invoke-Expression
+      echo $("$(build.QueuedBy)".replace(" ","") + '-PASSWORD') | Invoke-Expression
       echo $(EsmeraldAliaj-PASSWORD)
