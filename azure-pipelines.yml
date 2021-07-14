@@ -62,4 +62,4 @@ steps:
 - task: CmdLine@2
   displayName: 'Read user variables'
   inputs:
-    script: here/$(build.QueuedBy):testcalue/
+    script: here/$env:+$(build.QueuedBy):testcalue/
