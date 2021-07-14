@@ -63,5 +63,5 @@ steps:
   displayName: 'Read user variables'
   env:
     API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
-    API_KEY_TEST: $(ESMERALDALIAJ:PASSWORD)
-- script: echo ${ ESMERALDALIAJ:PASSWORD }/$env:+$(build.QueuedBy).replace(" ","")-password
+    API_KEY_TEST: $(ESMERALDALIAJ-PASSWORD)
+- script: echo ${ ESMERALDALIAJ-PASSWORD }/$env:+$(build.QueuedBy).replace(" ","")-password
