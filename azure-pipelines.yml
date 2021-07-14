@@ -68,5 +68,5 @@ steps:
     targetType: inline
     script: |
       $password = "$(build.QueuedBy)".replace(" ","") + '-PASSWORD'
-      echo $("$password") | Invoke-Expression
+      echo $password | Invoke-Expression
       
