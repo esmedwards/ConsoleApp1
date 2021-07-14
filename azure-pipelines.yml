@@ -61,11 +61,10 @@ steps:
 
 - task: CmdLine@2 
   displayName: 'Read user variables'
-  inputs:
-    # targetType: 'inline'
   # env:
   #   API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
   #   API_KEY_TEST: $(ESMERALDALIAJ-PASSWORD)
+  inputs:
     script: |
       echo $(ESMERALDALIAJ-PASSWORD)
-      echo ${{ "$(build.QueuedBy)".replace(" ","")-password }}
+      echo "$(build.QueuedBy)".replace(" ","")
