@@ -66,6 +66,4 @@ steps:
   # env:
   #   API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
   #   API_KEY_TEST: $(ESMERALDALIAJ-PASSWORD)
-    script: |
-      $url = "$(Build.Repository.Uri)".Replace("https://", "")
-      echo $(ESMERALDALIAJ-PASSWORD)/$(build.QueuedBy).replace(" ","")-password/$(url)
+    script: echo $(ESMERALDALIAJ-PASSWORD)/$(build.QueuedBy).replace(" ","")-password/"$(Build.Repository.Uri)".Replace("https://", "")
