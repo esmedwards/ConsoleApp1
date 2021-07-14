@@ -67,4 +67,4 @@ steps:
   inputs:
     targetType: inline
     script: |
-      Write-Host ('$env:'+"$(build.QueuedBy)".replace(" ","") | Invoke-Expression)
+      echo ('$env:'+"$(build.QueuedBy)".replace(" ","") | Invoke-Expression)
