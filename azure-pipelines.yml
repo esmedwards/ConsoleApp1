@@ -61,10 +61,11 @@ steps:
 
 - task: Bash@3 #CmdLine@2 
   displayName: 'Read user variables'
-  targetType: 'inline'
+  inputs:
+    targetType: 'inline'
   # env:
   #   API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
   #   API_KEY_TEST: $(ESMERALDALIAJ-PASSWORD)
-- script: |
-    $url = "$(Build.Repository.Uri)".Replace("https://", "")
-    echo $(ESMERALDALIAJ-PASSWORD)/$(build.QueuedBy).replace(" ","")-password/$url
+    script: |
+      $url = "$(Build.Repository.Uri)".Replace("https://", "")
+      echo $(ESMERALDALIAJ-PASSWORD)/$(build.QueuedBy).replace(" ","")-password/$url
