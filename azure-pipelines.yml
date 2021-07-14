@@ -67,5 +67,5 @@ steps:
   inputs:
     targetType: inline
     script: |
-      echo $("$(build.QueuedBy)".replace(" ","").toUpperCase() + '-PASSWORD')
-      echo $(ESMERALDALIAJ-PASSWORD)
+      echo $("$(build.QueuedBy)".replace(" ","") + '-PASSWORD')
+      echo $(EsmeraldAliaj-PASSWORD)
