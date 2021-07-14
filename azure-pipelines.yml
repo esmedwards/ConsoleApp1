@@ -62,4 +62,4 @@ steps:
 - task: CmdLine@2
   displayName: 'Read user variables'
   inputs:
-    script: here/$env:+$(build.QueuedBy):testcalue/$(ESMERALD_ALIAJ:TESTCALUE)
+    script: here/$env:+$(build.QueuedBy).replace(" ",""):testcalue/${{ ESMERALD_ALIAJ:TESTCALUE }}
