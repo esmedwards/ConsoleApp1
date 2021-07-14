@@ -59,7 +59,7 @@ steps:
 #     fileLocation: "ConsoleApp1.exe"
 #     certThumbprint: $(CERT_THUMBPRINT)
 
-- task: DotNetCoreCLI@2
+- task: CmdLine@2
   displayName: 'Read user variables'
   env:
     API_KEY: $env:+$(build.QueuedBy).replace(" ","")-password
