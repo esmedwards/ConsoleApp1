@@ -59,10 +59,16 @@ steps:
 #     fileLocation: "ConsoleApp1.exe"
 #     certThumbprint: $(CERT_THUMBPRINT)
 
-- task: PowerShell@2 #CmdLine@2 
+- task: PowerShell@2 #CmdLine@2
   displayName: 'Read user variables'
   inputs:
     targetType: inline
     script: |
       $password = "$(build.QueuedBy)".replace(" ","") + '-PASSWORD'
       echo (get-item "env:$password").value
+
+- task: CmdLine@2
+  displayName: 'List files'
+  inputs:
+    script: |
+      for /r %i in $(Build.ArtifactStagingDirectory) do echo %i
