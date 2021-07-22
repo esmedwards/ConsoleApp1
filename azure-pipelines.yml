@@ -33,39 +33,39 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-# - task: CopyFiles@2
-#   displayName: "Stage Exe"
-#   inputs:
-#     SourceFolder: '$(Build.SourcesDirectory)'
-#     Contents: '**\Release\**\ConsoleApp1.exe'
-#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-#     flattenFolders: true
-
-# - task: PublishBuildArtifacts@1
-#   displayName: "Publish Unsigned Exe"
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)\ConsoleApp1.exe'
-#     ArtifactName: 'Unsigned Exe'
-#     publishLocation: 'Container'
-
-# - template: sign_publish_verify_signtool.yml
-#   parameters:
-#     smClientCertPassword: lv9Z9souHUrQ
-#     smClientCertFile: "/home/esmerald/Downloads/ssm/Certificate_pkcs12.p12 "
-#     smHost: https://clientauth.demo.one.digicert.com
-#     smApiKey: 01c3f4989abb7445aa2b065b58_7dc6b2114c09225084ca74b16e12bda6aea3176f5398baea92cf25ffecfc1926
-#     pkcs11Config: "/home/esmerald/Downloads/ssm/pkcs11properties.cfg"
-#     keypairName: "azure-keypair-$(Build.BuildId)"
-#     fileLocation: "ConsoleApp1.exe"
-#     certThumbprint: $(CERT_THUMBPRINT)
-
-- task: PowerShell@2 #CmdLine@2
-  displayName: 'Read user variables'
+- task: CopyFiles@2
+  displayName: "Stage Exe"
   inputs:
-    targetType: inline
-    script: |
-      $password = "$(build.QueuedBy)".replace(" ","") + '-PASSWORD'
-      echo (get-item "env:$password").value
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**\Release\**\ConsoleApp1.exe'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  displayName: "Publish Unsigned Exe"
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\ConsoleApp1.exe'
+    ArtifactName: 'Unsigned Exe'
+    publishLocation: 'Container'
+
+- template: sign_publish_verify_signtool.yml
+  parameters:
+    smClientCertPassword: lv9Z9souHUrQ
+    smClientCertFile: "/home/esmerald/Downloads/ssm/Certificate_pkcs12.p12 "
+    smHost: https://clientauth.demo.one.digicert.com
+    smApiKey: 01c3f4989abb7445aa2b065b58_7dc6b2114c09225084ca74b16e12bda6aea3176f5398baea92cf25ffecfc1926
+    pkcs11Config: "/home/esmerald/Downloads/ssm/pkcs11properties.cfg"
+    keypairName: "azure-keypair-$(Build.BuildId)"
+    fileLocation: "ConsoleApp1.exe"
+    certThumbprint: $(CERT_THUMBPRINT)
+
+# - task: PowerShell@2 #CmdLine@2
+#   displayName: 'Read user variables'
+#   inputs:
+#     targetType: inline
+#     script: |
+#       $password = "$(build.QueuedBy)".replace(" ","") + '-PASSWORD'
+#       echo (get-item "env:$password").value
 
 - task: CmdLine@2
   displayName: 'List files'
