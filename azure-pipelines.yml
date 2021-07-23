@@ -79,4 +79,3 @@ steps:
     script: |
       dir /a-D /S /B
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
-
