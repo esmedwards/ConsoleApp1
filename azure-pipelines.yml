@@ -72,3 +72,11 @@ steps:
   inputs:
     script: |
       for %f in ( "$(Build.ArtifactStagingDirectory)\*" ) do @echo %f
+
+- task: CmdLine@2
+  displayName: 'List files'
+  inputs:
+    script: |
+      dir /a-D /S /B
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
