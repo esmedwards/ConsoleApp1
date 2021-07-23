@@ -67,14 +67,14 @@ steps:
 #       $password = "$(build.QueuedBy)".replace(" ","") + '-PASSWORD'
 #       echo (get-item "env:$password").value
 
-# - task: CmdLine@2
-#   displayName: 'List files'
-#   inputs:
-#     script: |
-#       for %f in ( "$(Build.ArtifactStagingDirectory)\*" ) do @echo %f
-
 - task: CmdLine@2
   displayName: 'List files'
   inputs:
     script: |
-      for /F %A in ('dir "$(Build.ArtifactStagingDirectory)\*" /s /b') do @echo %A
+      for %f in ('"$(Build.ArtifactStagingDirectory)\*"') do @echo %f
+
+# - task: CmdLine@2
+#   displayName: 'List files'
+#   inputs:
+#     script: |
+#       for /F %A in ('dir "$(Build.ArtifactStagingDirectory)\*" /s /b') do @echo %A
