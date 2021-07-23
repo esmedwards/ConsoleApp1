@@ -71,7 +71,7 @@ steps:
   displayName: 'List files'
   inputs:
     script: |
-      for %f in ('"$(Build.ArtifactStagingDirectory)\*"') do @echo %f
+      for %f in ('$(Build.ArtifactStagingDirectory)\*') do @echo %f
 
 # - task: CmdLine@2
 #   displayName: 'List files'
