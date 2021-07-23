@@ -78,4 +78,4 @@ steps:
   inputs:
     script: |
       for /F %A in ('dir "$(Build.ArtifactStagingDirectory)\*" /s /b') do @echo %A
-    #workingDirectory: '$(Build.ArtifactStagingDirectory)'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
