@@ -78,5 +78,6 @@ steps:
   inputs:
     script: |
       dir /a-D /S /B
+      for /f "tokens=*" %G in ('dir /b /s /a:d "$(Build.ArtifactStagingDirectory)\*"') do echo Found %G
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
