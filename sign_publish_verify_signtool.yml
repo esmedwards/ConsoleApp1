@@ -35,7 +35,11 @@ steps:
 - task: CmdLine@2
   displayName: 'Sign EXE'
   inputs:
-    script: signtool sign /sha1 ${{ parameters.certThumbprint }} /tr http://timestamp.digicert.com $(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}
+    script: |
+      for %%f in ( "$(Build.ArtifactStagingDirectory)\*" ) do (
+        @echo %%f
+        signtool sign /sha1 ${{ parameters.certThumbprint }} /tr http://timestamp.digicert.com %%f
+      )
 
 - task: PublishBuildArtifacts@1
   displayName: "Publish Signed Exe"
