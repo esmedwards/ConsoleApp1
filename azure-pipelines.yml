@@ -60,6 +60,7 @@ steps:
     certThumbprint: $(CERT_THUMBPRINT)
 
 # - task: PowerShell@2 #CmdLine@2
+#   Load a variable that differs for each user
 #   displayName: 'Read user variables'
 #   inputs:
 #     targetType: inline
