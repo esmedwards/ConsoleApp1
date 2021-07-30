@@ -51,4 +51,8 @@ steps:
 - task: CmdLine@2
   displayName: 'Verify Signed EXE'
   inputs:
-    script: signtool verify /v /pa $(Build.ArtifactStagingDirectory)\${{ parameters.fileLocation }}
+    script: |
+      for %%f in ( "$(Build.ArtifactStagingDirectory)\*" ) do (
+        @echo %%f
+        signtool verify /v /pa %%f
+      )
